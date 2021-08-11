@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styles from "../styles/Footer.module.css";
 import SVGInstagram from "./icons/SVGInstagram";
 import SVGFacebook from "./icons/SVGFacebook";
@@ -18,6 +19,7 @@ const ICON = (SVG, url) => (
 );
 
 export default function Footer() {
+  const Router = useRouter();
   return (
     <footer className={styles.footer}>
       <div>
@@ -27,7 +29,7 @@ export default function Footer() {
         {ICON(<SVGFacebook />, FACEBOOK)}
       </div>
       <div className="mt-4">
-        Powered by <b className="link" onClick={()=>window.open('https://serverless-aminects.vercel.app/')}> &lt;SimpleCode/&gt; </b> - {dayjs().year()}
+        Powered by <b className="link" onClick={()=>Router.push("/")}> &lt;SimpleCode/&gt; </b> - {dayjs().year()}
       </div>
     </footer>
   );

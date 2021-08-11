@@ -1,0 +1,28 @@
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: WHITE;
+    WIDTH: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #0070f3;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 5px 25px 0 rgb(0 113 243 / 40%);
+}
+
+.buttons{
+    text-align: right;
+}
+.logo{
+    text-shadow: 3px 3px rgb(0 113 243 / 40%);
+    cursor: pointer;
+    color: #0d6efd;
+}
+
+/* .logo:hover{
+    text-shadow: none !important;
+    font-weight: bolder;
+    transition: ease 1s;
+} */

@@ -43,7 +43,7 @@ export default function Home(props) {
 
 
           <div className="fullWidth mt-4 card">
-            <h3 className="pb-4">About me</h3>
+            <h3 className="pb-4">About</h3>
             <div>{props.aboutMe}</div>
           </div>
           

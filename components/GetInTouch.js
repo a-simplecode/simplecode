@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "../styles/GetInTouch.module.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import Button from "./Button";
 
 const Validate = (values) => {
   const errors = {};
@@ -24,15 +25,19 @@ const Validate = (values) => {
 };
 
 export default function GetInTouch() {
-
-  const submitEmail = async (values, setSubmitting) => {
+  const submitEmail = async (values, setSubmitting,resetForm) => {
     const result = await fetch("/api/email", {
       method: "post",
       body: JSON.stringify(values),
     });
 
-    toast.info(<div><h3>Success</h3>Thank you for your message!</div>)
+    toast.info(
+      <div>
+        <h3>Success</h3>Thank you for your message!
+      </div>
+    );
 
+    resetForm({});
     setSubmitting(false);
   };
 
@@ -49,8 +54,7 @@ export default function GetInTouch() {
         }}
         validate={(values) => Validate(values)}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          submitEmail(values, setSubmitting);
-          resetForm({});
+          submitEmail(values, setSubmitting,resetForm);
         }}
       >
         {({ isSubmitting }) => (
@@ -127,20 +131,20 @@ export default function GetInTouch() {
               </div>
             </div>
             <div className="col-12 mt-4 text-center">
-              <button
-                className="btn btn-secondary me-2"
+              <Button
+                title="reset"
                 type="reset"
+                color="btn-secondary"
                 disabled={isSubmitting}
-              >
-                Reset
-              </button>
-              <button
-                className="btn btn-primary"
+                className="ms-2 me-4"
+              />
+
+              <Button
+                title="Submit"
                 type="submit"
+                loading={isSubmitting}
                 disabled={isSubmitting}
-              >
-                Submit
-              </button>
+              />
             </div>
           </Form>
         )}
