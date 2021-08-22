@@ -1,0 +1,16 @@
+.tableContainer{
+    height: 83vh !important;
+    min-width: 1000px;
+    overflow: scroll;
+}
+
+.table{
+    border-collapse: separate;
+}
+
+.thead{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
