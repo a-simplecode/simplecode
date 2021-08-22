@@ -8,11 +8,11 @@ import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
 
-Router.events.on('routeChangeStart', (url) => {
-  console.log(`Loading: ${url}`)
-})
+// Router.events.on('routeChangeStart', (url) => {
+//   console.log(`Loading: ${url}`)
+// })
 
-Router.events.on('routeChangeComplete', () => console.log("finish"))
+// Router.events.on('routeChangeComplete', () => console.log("finish"))
   return (
     <>
       <Head>

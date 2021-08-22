@@ -15,7 +15,6 @@ const fetchData = (search)=>{
         })
           .then((response) => response.json())
           .then((data) => {
-              console.log("data",data)
             setData((data && data.data) ?data.data: []);
           });
       } catch (e) {
