@@ -1,26 +1,43 @@
 import { useEffect, useState } from "react";
+import SVGArrowDown from "../icons/SVGArrowDown";
+import SVGArrowUp from "../icons/SVGArrowUp";
 import styles from "./SmartTable.module.css";
 
 function SmartTable(props) {
+  const [loading, setLoading] = useState(false);
+  const [sortDesc, setSortDesc] = useState({});
+  const [tableWidth, setTableWidth] = useState(1000);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      fetchData();
+    tableWidthFunc();
+    fetchData();
   }, []);
 
-const fetchData = (search)=>{
+  const fetchData = (search) => {
+    setLoading(true);
     try {
-        fetch(props.url+(search ? "?search="+search: ""), {
-          method: "get",
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            setData((data && data.data) ?data.data: []);
-          });
-      } catch (e) {
-        console.log("Fetch error", e.message);
-      }
-}
+      fetch(props.url + (search ? "?search=" + search : ""), {
+        method: "get",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data && data.data ? data.data : []);
+          setLoading(false);
+        });
+    } catch (e) {
+      console.log("Fetch error", e.message);
+    }
+  };
+
+  const tableWidthFunc = ()=>{
+    let tempTableWidth = 0;
+    props.headCells.map((cell)=>{
+      tempTableWidth += cell.width
+    })
+
+    if(tempTableWidth) setTableWidth(tempTableWidth);
+  }
 
   const debounce = (func, timeout = 300) => {
     let timer;
@@ -38,6 +55,20 @@ const fetchData = (search)=>{
     fetchData(value);
   }, props.searchDebounceTime ?? 300);
 
+  const sortData = (cell) => {
+    let tempData = [...data];
+
+    tempData.sort((a, b) => {
+      if (sortDesc[cell]) {
+        return a[cell].toLowerCase() < b[cell].toLowerCase() ? 1 : -1;
+      } else {
+        return a[cell].toLowerCase() > b[cell].toLowerCase() ? 1 : -1;
+      }
+    });
+    setSortDesc({[cell] :!sortDesc[cell]})
+    setData(tempData);
+  };
+
   return (
     <div className="col-12 p-4">
       <div className="row">
@@ -51,9 +82,14 @@ const fetchData = (search)=>{
           />
         </div>
       </div>
-      <div className="row mt-3">
+      <div className={styles.relative + " row mt-3"}>
         <div className={styles.tableContainer}>
-          <table className={styles.table+" table table-striped border"}>
+          <table className={styles.table + " table table-striped border"} style={{minWidth: tableWidth}}>
+            {loading && (
+              <thead className={styles.loaderContainer + " text-primary"}>
+                <tr className="spinner-border" role="status"></tr>
+              </thead>
+            )}
             <thead className={styles.thead}>
               <tr>
                 {props.headCells.map((headCell) => {
@@ -63,15 +99,18 @@ const fetchData = (search)=>{
                       key={headCell.id}
                       scope="col"
                       style={{ width: headCell.width ?? "auto" }}
+                      className={styles.pointer}
+                      onClick={() => sortData(headCell.id)}
                     >
                       {headCell.label}
+                      {sortDesc[headCell.id] ? <SVGArrowDown />: sortDesc[headCell.id] === undefined ? "" : <SVGArrowUp />}
                     </th>
                   );
                 })}
               </tr>
             </thead>
             <tbody>
-              {(data && data.length > 0) ? (
+              {data && data.length > 0 ? (
                 data.map((row, idx) => {
                   return (
                     <tr key={"tr_" + idx}>
@@ -86,7 +125,11 @@ const fetchData = (search)=>{
                   );
                 })
               ) : (
-                <tr><td colSpan={props.headCells.length} className="text-center">NO DATA FOUND</td></tr>
+                <tr>
+                  <td colSpan={props.headCells.length} className="text-center">
+                    NO DATA FOUND
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>

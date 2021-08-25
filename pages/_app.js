@@ -1,18 +1,20 @@
 import Head from "next/head";
 import Router from "next/router";
 import { ToastContainer, Slide } from "react-toastify";
+import NProgress from "nprogress"; //nprogress module
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "nprogress/nprogress.css"; //styles of nprogress
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
 
-// Router.events.on('routeChangeStart', (url) => {
-//   console.log(`Loading: ${url}`)
-// })
+//Binding events.
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
-// Router.events.on('routeChangeComplete', () => console.log("finish"))
   return (
     <>
       <Head>

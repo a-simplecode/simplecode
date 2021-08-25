@@ -7,31 +7,31 @@ export default function Home(props) {
       id: "email",
       numeric: false,
       label: "Email",
-      width: "200px",
+      width: 200,
     },
     {
       id: "name",
       numeric: false,
       label: "Name",
-      width: "100px",
+      width: 150,
     },
     {
       id: "phone",
       numeric: false,
       label: "Phone",
-      width: "80px",
+      width: 100,
     },
     {
       id: "subject",
       numeric: false,
       label: "Subject",
-      width: "300px",
+      width: 300,
     },
     {
       id: "message",
       numeric: false,
       label: "Message",
-      width: "300px",
+      width: 300,
     },
   ];
 
