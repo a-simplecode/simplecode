@@ -27,13 +27,12 @@ export default function Header() {
         </div>
         <div className={cn("col-6", styles.buttons)}>
           {Router.asPath.includes("admin") ? (
-            <>
-              <Button title="Home" onClick={() => Router.push("/")} />{" "}
-             {session && <Button color="btn-danger" title="Logout" onClick={Logout} />}
-            </>
+              <Button title="Home" onClick={() => Router.push("/")} />
           ) : (
             <Button title="Admin" onClick={() => Router.push("/admin")} />
           )}
+          {" "}
+          {session && <Button color="btn-danger" title="Logout" onClick={Logout} />}
         </div>
       </div>
     </div>

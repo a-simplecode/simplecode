@@ -3,7 +3,6 @@ import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 import cn from "classnames";
 import styles from "../styles/Home.module.css";
 import Card from "../components/Card";
-import Footer from "../components/Footer";
 import {
   INSTAGRAM,
   FACEBOOK,
@@ -88,7 +87,6 @@ export default function Home(props) {
           </div>
           <GetInTouch />
         </main>
-        <Footer />
       </div>
     </ParallaxProvider>
   );

@@ -1,8 +1,10 @@
 .footer {
     width: 100%;
+    max-width: 832px;
     border-top: 1px solid #eaeaea;
     text-align: center;
     padding: 20px 0;
+    border: 1px solid rgb(207, 241, 252,0.8);
   }
 
   .icons{
