@@ -9,6 +9,7 @@
     transition: color 0.15s ease, border-color 0.15s ease;
     box-shadow: 0 5px 25px 0 rgba(0,0,0,.2);
     width: 45%;
+    background-color: white;
   }
   
   @media (max-width: 655px) {
