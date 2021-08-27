@@ -117,7 +117,7 @@ export async function getServerSideProps(ctx) {
       },
     };
 
-  const tableMarkdown = getSpecificMarkdown("SmartTable.md");
+  const tableMarkdown = getSpecificMarkdown("smartTable.md");
   const SmartTableJS = component("SmartTable/index.js");
   const SmartTableCSS = component("SmartTable/SmartTable.module.css");
 
