@@ -78,3 +78,16 @@ a {
   border-color: #0070f3;
   box-shadow: 0 5px 25px 0 rgba(0, 113, 243,.4);
 }
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(6, 66, 247, 0.5);
+  box-shadow: 0 0 1px rgba(6, 66, 247, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(6, 66, 247, 0.5);
+}

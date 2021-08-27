@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signIn, getSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { toast } from "react-toastify";
 import Button from "../../components/Button";
 
@@ -39,9 +40,9 @@ export default function Login() {
 
   return (
     <div className="container">
-      <h1 className="mb-5 secondaryColor">
-        <b>&lt;SimpleCode/&gt;</b>
-      </h1>
+      <div className="mb-5">
+        <Image src="/images/admin-login.jpeg" width={274} height={150} alt="admin logo"/>
+      </div>
       <Formik
         initialValues={{
           username: "",
@@ -76,7 +77,7 @@ export default function Login() {
               className="text-danger"
             />
             <Field
-              type="text"
+              type="password"
               name="password"
               className="form-control mt-3"
               placeholder="Password"
