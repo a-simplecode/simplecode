@@ -10,7 +10,7 @@ export default function Header() {
 
   const Logout = async () => {
     const res = await signOut({redirect: false});
-    Router.replace('admin/login');
+    Router.replace('/admin/login');
   };
 
   return (
@@ -32,7 +32,7 @@ export default function Header() {
              {session && <Button color="btn-danger" title="Logout" onClick={Logout} />}
             </>
           ) : (
-            <Button title="Admin" onClick={() => Router.push("admin")} />
+            <Button title="Admin" onClick={() => Router.push("/admin")} />
           )}
         </div>
       </div>
