@@ -9,9 +9,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/cjs//styles/prism";
 
 export default function SmartTablePage(props) {
-  process.on('warning', (warning) => {
-    console.log(warning.stack);
-});
   const headCells = [
     {
       id: "email",
