@@ -2,8 +2,8 @@
     max-height: 83vh !important;
     min-width: 97vw !important;
     overflow: scroll;
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
     border: 1px solid lightgrey;
     box-shadow: 0 5px 25px 0 rgba(0, 113, 243,.4);
 
@@ -24,7 +24,7 @@
 
 .table{
     border-collapse: separate;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .thead{

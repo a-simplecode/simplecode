@@ -3,6 +3,15 @@ import path from "path";
 import matter from "gray-matter";
 
 const markdownDir = path.join(process.cwd(), "markdown");
+const components = path.join(process.cwd(), "components");
+
+export function component(fileName){
+
+  const filePath = path.join(components, fileName);
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+
+  return fileContent
+}
 
 export function getSpecificMarkdown(fileName) {
   const filePath = path.join(markdownDir, fileName);
