@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+@media (max-width: 831px) {
+  .container{
+    display: block;
+  }
+}
+
 .body {
   max-width: 832px;
   margin-top: 52px;

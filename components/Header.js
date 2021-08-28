@@ -26,6 +26,8 @@ export default function Header() {
           </span>
         </div>
         <div className={cn("col-6", styles.buttons)}>
+          {session && <Button color="btn-secondary" title="Components" onClick={()=> Router.push("/components/smart-table")} />}
+          {" "}
           {Router.asPath.includes("admin") ? (
               <Button title="Home" onClick={() => Router.push("/")} />
           ) : (
