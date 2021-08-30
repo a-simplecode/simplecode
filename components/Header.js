@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useSession, signOut, getSession } from "next-auth/client";
+import { useSession, signOut } from "next-auth/client";
 import cn from "classnames";
 import Button from "./Button";
 import styles from "../styles/Header.module.css";
@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const Router = useRouter();
   const [openMenu, setOpenMenu] = useState(false);
-  const session = getSession();
-
+  const [session,loading] = useSession();
+  
   const Logout = async () => {
     const res = await signOut({ redirect: false });
     Router.replace("/admin/login");
