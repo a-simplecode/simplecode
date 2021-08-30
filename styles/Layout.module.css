@@ -4,15 +4,15 @@
   align-items: center;
 }
 
-@media (max-width: 831px) {
+@media (max-width: 1201px) {
   .container{
     display: block;
   }
 }
 
 .body {
-  max-width: 832px;
-  margin-top: 52px;
+  max-width: 1200px;
+  margin-top: 50px;
   background-color: rgb(202, 238, 250, 0.2);
   min-height: 79vh;
 }

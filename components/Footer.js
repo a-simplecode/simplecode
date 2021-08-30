@@ -13,7 +13,7 @@ import {
 import dayjs from "dayjs";
 
 const ICON = (SVG, url) => (
-  <span className={styles.icons} onClick={() => window.open(url)}>
+  <span className={styles.icons} onClick={(e) => {e.preventDefault(); window.open(url);}}>
     {SVG}
   </span>
 );
@@ -29,7 +29,7 @@ export default function Footer() {
         {ICON(<SVGFacebook />, FACEBOOK)}
       </div>
       <div className="mt-4">
-        Powered by <b className="link" onClick={()=>Router.push("/")}> &lt;SimpleCode/&gt; </b> - {dayjs().year()}
+        Powered by <b className="link" onClick={(e) => {e.preventDefault(); Router.push("/");}}> &lt;SimpleCode/&gt; </b> - {dayjs().year()}
       </div>
     </footer>
   );

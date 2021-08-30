@@ -36,9 +36,10 @@ a {
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:flex-start;
   align-items: center;
-  padding-top: 30%;
+  padding-top: 10%;
+  width: 1200px;
 }
 
 .main {

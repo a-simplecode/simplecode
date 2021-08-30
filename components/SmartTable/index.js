@@ -17,7 +17,7 @@ function SmartTable(props) {
   const fetchData = (search) => {
     setLoading(true);
     try {
-      fetch(props.url + (search ? "?search=" + search : ""), {
+      fetch(props.url + (search ? "?search=" + search.toLowerCase() : ""), {
         method: "get",
       })
         .then((response) => response.json())
