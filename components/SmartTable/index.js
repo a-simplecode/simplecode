@@ -12,7 +12,7 @@ function SmartTable(props) {
   useEffect(() => {
     tableWidthFunc();
     fetchData();
-  },[]);
+  });
 
   const fetchData = (search) => {
     setLoading(true);
