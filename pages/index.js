@@ -18,9 +18,9 @@ export default function Home(props) {
         <Image
           className={styles.imgBackground}
           alt="background image"
-          src="/images/dev_Background.jpeg"
-          width={799}
-          height={396}
+          src="/images/background-image.jpeg"
+          width={1200}
+          height={504}
         />
 
         <main className={styles.main}>
@@ -38,7 +38,7 @@ export default function Home(props) {
           <h1 className={styles.title}>
             <b>Amine Amine</b>
           </h1>
-          <h3 className="secondaryColor">Software Engineer | Web Developer</h3>
+          <h2 className="secondaryColor">Software Engineer | Web Developer</h2>
 
 
           <div className="fullWidth mt-4 card">
