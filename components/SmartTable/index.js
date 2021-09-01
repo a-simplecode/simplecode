@@ -12,33 +12,33 @@ function SmartTable(props) {
   useEffect(() => {
     tableWidthFunc();
     fetchData();
-  });
+  }, [props.url,props.headCells]);
 
-  const fetchData = (search) => {
+  const fetchData = async (search) => {
     setLoading(true);
     try {
-      fetch(props.url + (search ? "?search=" + search.toLowerCase() : ""), {
-        method: "get",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data && data.data ? data.data : []);
-          setLoading(false);
-        });
+      const response = await fetch(
+        props.url + (search ? "?search=" + search.toLowerCase() : ""),
+        {
+          method: "get",
+        }
+      );
+      const data = await response.json();
+      setData(data && data.data ? data.data : []);
     } catch (e) {
       console.log("Fetch error", e.message);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
-  const tableWidthFunc = ()=>{
+  const tableWidthFunc = () => {
     let tempTableWidth = 0;
-    props.headCells.map((cell)=>{
-      tempTableWidth += cell.width
-    })
+    props.headCells.map((cell) => {
+      tempTableWidth += cell.width;
+    });
 
-    if(tempTableWidth) setTableWidth(tempTableWidth);
-  }
+    if (tempTableWidth) setTableWidth(tempTableWidth);
+  };
 
   const debounce = (func, timeout = 300) => {
     let timer;
@@ -66,7 +66,7 @@ function SmartTable(props) {
         return a[cell].toLowerCase() > b[cell].toLowerCase() ? 1 : -1;
       }
     });
-    setSortDesc({[cell] :!sortDesc[cell]})
+    setSortDesc({ [cell]: !sortDesc[cell] });
     setData(tempData);
   };
 
@@ -85,7 +85,10 @@ function SmartTable(props) {
       </div>
       <div className={styles.relative + " row mt-3"}>
         <div className={styles.tableContainer}>
-          <table className={styles.table + " table table-striped border"} style={{minWidth: tableWidth}}>
+          <table
+            className={styles.table + " table table-striped border"}
+            style={{ minWidth: tableWidth }}
+          >
             {loading && (
               <thead className={styles.loaderContainer + " text-primary"}>
                 <tr className="spinner-border" role="status"></tr>
@@ -104,7 +107,13 @@ function SmartTable(props) {
                       onClick={() => sortData(headCell.id)}
                     >
                       {headCell.label}
-                      {sortDesc[headCell.id] ? <SVGArrowDown />: sortDesc[headCell.id] === undefined ? "" : <SVGArrowUp />}
+                      {sortDesc[headCell.id] ? (
+                        <SVGArrowDown />
+                      ) : sortDesc[headCell.id] === undefined ? (
+                        ""
+                      ) : (
+                        <SVGArrowUp />
+                      )}
                     </th>
                   );
                 })}
