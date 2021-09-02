@@ -2,7 +2,8 @@ import { MongoClient } from "mongodb";
 
 export default async function emails(req, res) {
   try {
-    let { search } = req.query;
+    console.log("req.query",req.query)
+    let { search, page, limit } = req.query;
     let conditions = {};
 
     const client = await MongoClient.connect(
