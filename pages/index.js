@@ -53,7 +53,6 @@ export default function Home(props) {
             </i>
           </div>
           <div className={cn(styles.einstein, "fullWidth")}>
-            <div className={styles.overlay}></div>
             <h3 className="pb-4">{props.einsteinTitle}</h3>
             <p className="pb-2">{props.einsteinSection1}</p>
             <p className="pb-2">{props.einsteinSection2}</p>

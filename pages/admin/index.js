@@ -42,6 +42,7 @@ export default function Home(props) {
         url="/api/admin/emails"
         headCells={headCells}
         searchDebounceTime={800}
+        // noPagination
       />
     </div>
   );

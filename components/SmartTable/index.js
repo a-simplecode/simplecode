@@ -17,6 +17,7 @@ function SmartTable(props) {
     props.rowsPerPageOptions ?? [5, 10, 25, 50]
   );
   const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     tableWidthFunc();
@@ -34,7 +35,10 @@ function SmartTable(props) {
         }
       );
       const data = await response.json();
-      setData(data && data.data ? data.data : []);
+      if (data && data.data) {
+        setData(data.data.result ?? []);
+        setTotal(data.data.total, 0);
+      }
     } catch (e) {
       console.log("Fetch error", e.message);
     }
@@ -75,7 +79,7 @@ function SmartTable(props) {
   const handleChange = debounce((event) => {
     const { value } = event.target;
     setSearch(value);
-    fetchData(buildQueryString(value,page,rowsPerPage));
+    fetchData(buildQueryString(value, page, rowsPerPage));
   }, props.searchDebounceTime ?? 300);
 
   const sortData = (cell) => {
@@ -96,6 +100,11 @@ function SmartTable(props) {
     <div className="col-12 p-4">
       <div className={styles.container + " row"}>
         <div className="col-12">
+          {loading && (
+            <div className={styles.loaderContainer + " text-primary"}>
+              <div className="spinner-border" role="status"></div>
+            </div>
+          )}
           <div className="row">
             <div className="col-6 h3">{props.title}</div>
             <div className="col-6 text-end">
@@ -107,17 +116,12 @@ function SmartTable(props) {
               />
             </div>
           </div>
-          <div className={styles.relative + " row mt-3"}>
+          <div className={"row mt-3"}>
             <div className={styles.tableContainer}>
               <table
                 className={styles.table + " table table-striped border"}
                 style={{ minWidth: tableWidth }}
               >
-                {loading && (
-                  <thead className={styles.loaderContainer + " text-primary"}>
-                    <tr className="spinner-border" role="status"></tr>
-                  </thead>
-                )}
                 <thead className={styles.thead}>
                   <tr>
                     {props.headCells.map((headCell) => {
@@ -144,7 +148,7 @@ function SmartTable(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {data && data.length > 0 ? (
+                  {data.length > 0 ? (
                     data.map((row, idx) => {
                       return (
                         <tr key={"tr_" + idx}>
@@ -172,42 +176,69 @@ function SmartTable(props) {
               </table>
             </div>
           </div>
-          <div className="row">
-            <div className="col-12 text-end p-3">
-              <span>
-                Rows per page:{" "}
-                <select
-                  name="rowsPerPage"
-                  value={rowsPerPage}
-                  onChange={(e) => {
-                    setRowsPerPage(e.target.value);
-                    fetchData(buildQueryString(search, page, e.target.value));
+          {props.noPagination ? (
+            <div className="row">
+              <div className="col-12 text-end p-3">
+                {data.length > 0 ? data.length : 0} Rows
+              </div>
+            </div>
+          ) : (
+            <div className="row">
+              <div className="col-12 text-end p-3">
+                <span>
+                  Rows per page:{" "}
+                  <select
+                    name="rowsPerPage"
+                    value={rowsPerPage}
+                    onChange={(e) => {
+                      setRowsPerPage(e.target.value);
+                      fetchData(buildQueryString(search, page, e.target.value));
+                    }}
+                  >
+                    {rowsPerPageOptions.map((nbr) => {
+                      return <option value={nbr}>{nbr}</option>;
+                    })}
+                  </select>
+                </span>
+                <span className="ms-4">
+                  {(page - 1) * rowsPerPage + 1}-
+                  {(page - 1) * rowsPerPage + data.length} of {total}
+                </span>
+                <span
+                  className={page === 1 ? "ms-4" : styles.pointer + " ms-4"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (page === 1) return;
+                    setPage(page - 1);
+                    fetchData(buildQueryString(search, page - 1, rowsPerPage));
                   }}
                 >
-                  {rowsPerPageOptions.map((nbr) => {
-                    return <option value={nbr}>{nbr}</option>;
-                  })}
-                </select>
-              </span>
-              <span className="ms-4">1-10 of 14</span>
-              <span
-                className={styles.pointer + " ms-4"}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                <SVGChevronLeft />
-              </span>
-              <span
-                className={styles.pointer + " ms-4"}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                <SVGChevronRight />
-              </span>
+                  <SVGChevronLeft
+                    color={page === 1 ? "lightgray" : undefined}
+                  />
+                </span>
+                <span
+                  className={
+                    page * rowsPerPage >= total
+                      ? "ms-4"
+                      : styles.pointer + " ms-4"
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if ((page - 1) * rowsPerPage > total) return;
+                    setPage(page + 1);
+                    fetchData(buildQueryString(search, page + 1, rowsPerPage));
+                  }}
+                >
+                  <SVGChevronRight
+                    color={
+                      page * rowsPerPage >= total ? "lightgray" : undefined
+                    }
+                  />
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

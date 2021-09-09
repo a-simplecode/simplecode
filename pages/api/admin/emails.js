@@ -2,7 +2,6 @@ import { MongoClient } from "mongodb";
 
 export default async function emails(req, res) {
   try {
-    console.log("req.query",req.query)
     let { search, page, limit } = req.query;
     let conditions = {};
 
@@ -11,7 +10,7 @@ export default async function emails(req, res) {
     );
     const db = client.db();
     if (search) {
-      const regex = new RegExp(".*" + search + ".*");
+      const regex = new RegExp(".*" + search + ".*", "i");
       conditions = {
         $or: [
           { email: regex },
@@ -23,14 +22,23 @@ export default async function emails(req, res) {
       };
     }
 
+    if (page) page = parseInt(page, 10);
+    if (limit) limit = parseInt(limit, 10);
+
+    const total = await db.collection("emails").find(conditions).count();
+
     const result = await db
       .collection("emails")
       .find(conditions)
+      .skip(total < limit ? 0 : page && limit ? (page - 1) * limit : 0)
+      .limit(limit ?? 9999)
       .sort({ date: -1 })
       .toArray();
 
     client.close();
-    res.status(200).json({ status: "Ok", data: result });
+    res
+      .status(200)
+      .json({ status: "Ok", data: { result: result, total: total } });
   } catch (error) {
     console.log("DB_ERROR", error.message);
     res.status(400).json({ status: "Error", data: error.message });

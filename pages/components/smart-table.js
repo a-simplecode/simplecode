@@ -103,6 +103,7 @@ export default function SmartTablePage(props) {
         url="/api/admin/emails"
         headCells={headCells}
         searchDebounceTime={800}
+        // noPagination
       />
       <ReactMarkdown components={markdownComponents}>
         {props.tableMarkdown.content}
