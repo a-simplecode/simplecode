@@ -195,8 +195,8 @@ function SmartTable(props) {
                       fetchData(buildQueryString(search, page, e.target.value));
                     }}
                   >
-                    {rowsPerPageOptions.map((nbr) => {
-                      return <option value={nbr}>{nbr}</option>;
+                    {rowsPerPageOptions.map((nbr, idx) => {
+                      return <option key={"rowsPerPageOptions_"+idx} value={nbr}>{nbr}</option>;
                     })}
                   </select>
                 </span>
