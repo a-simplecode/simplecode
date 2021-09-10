@@ -6,6 +6,8 @@ export default function Home(props) {
     {
       id: "email",
       numeric: false,
+      // sortable: false,
+      // render: (row)=> <div style={{color: "red"}}>{row.email} {row.name}</div>,
       label: "Email",
       width: 200,
     },

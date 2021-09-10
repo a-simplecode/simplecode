@@ -116,67 +116,72 @@ function SmartTable(props) {
               />
             </div>
           </div>
-          <div className={"row mt-3"}>
-            <div className={styles.tableContainer}>
-              <table
-                className={styles.table + " table table-striped border"}
-                style={{ minWidth: tableWidth }}
-              >
-                <thead className={styles.thead}>
-                  <tr>
-                    {props.headCells.map((headCell) => {
-                      return (
-                        <th
-                          id={headCell.id}
-                          key={headCell.id}
-                          scope="col"
-                          style={{ width: headCell.width ?? "auto" }}
-                          className={styles.pointer}
-                          onClick={() => sortData(headCell.id)}
-                        >
-                          {headCell.label}
-                          {sortDesc[headCell.id] ? (
-                            <SVGArrowDown />
-                          ) : sortDesc[headCell.id] === undefined ? (
-                            ""
-                          ) : (
-                            <SVGArrowUp />
-                          )}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.length > 0 ? (
-                    data.map((row, idx) => {
+          {data.length > 0 ? (
+            <div className={"row mt-3"}>
+              <div className={styles.tableContainer}>
+                <table
+                  className={styles.table + " table table-striped border"}
+                  style={{ minWidth: tableWidth }}
+                >
+                  <thead className={styles.thead}>
+                    <tr>
+                      {props.headCells.map((headCell) => {
+                        return (
+                          <th
+                            id={headCell.id}
+                            key={headCell.id}
+                            scope="col"
+                            style={{ width: headCell.width ?? "auto" }}
+                            className={
+                              headCell.sortable !== false ? styles.pointer : ""
+                            }
+                            onClick={() =>
+                              headCell.sortable !== false
+                                ? sortData(headCell.id)
+                                : {}
+                            }
+                          >
+                            {headCell.label}
+                            {sortDesc[headCell.id] ? (
+                              <SVGArrowDown />
+                            ) : sortDesc[headCell.id] === undefined ? (
+                              ""
+                            ) : (
+                              <SVGArrowUp />
+                            )}
+                          </th>
+                        );
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.map((row, idx) => {
                       return (
                         <tr key={"tr_" + idx}>
                           {props.headCells.map((headCell, idxx) => {
                             return (
                               <td key={"td_" + idx + "_" + idxx}>
-                                {row[headCell.id]}
+                                {headCell.render
+                                  ? headCell.render(row)
+                                  : row[headCell.id]}
                               </td>
                             );
                           })}
                         </tr>
                       );
-                    })
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan={props.headCells.length}
-                        className="text-center"
-                      >
-                        NO DATA FOUND
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-          {props.noPagination ? (
+          ) : (
+            <div className="row p-4">
+              <div className={styles.noDataFound + " col-12"}>
+                <h4>NO DATA FOUND</h4>
+              </div>
+            </div>
+          )}
+          {props.noPagination || data.length === 0 ? (
             <div className="row">
               <div className="col-12 text-end p-3">
                 {data.length > 0 ? data.length : 0} Rows
@@ -196,7 +201,11 @@ function SmartTable(props) {
                     }}
                   >
                     {rowsPerPageOptions.map((nbr, idx) => {
-                      return <option key={"rowsPerPageOptions_"+idx} value={nbr}>{nbr}</option>;
+                      return (
+                        <option key={"rowsPerPageOptions_" + idx} value={nbr}>
+                          {nbr}
+                        </option>
+                      );
                     })}
                   </select>
                 </span>
