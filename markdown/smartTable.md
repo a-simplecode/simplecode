@@ -11,3 +11,7 @@ selected: true  #mark the files i want
 ```css
 /* load the css file for the smart Table Component */
 ```
+
+```use
+<!-- tell the user how to use thi component -->
+```

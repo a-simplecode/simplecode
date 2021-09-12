@@ -10,42 +10,49 @@ import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark";
 import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
 import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
 
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState } from "react";
+import SVGClipBoard from "../../components/icons/SVGClipboard";
+import SVGCheck from "../../components/icons/SVGCheck";
+
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
 
+const headCells = [
+  {
+    id: "email",
+    numeric: false,
+    label: "Email",
+    width: 200,
+  },
+  {
+    id: "name",
+    numeric: false,
+    label: "Name",
+    width: 150,
+  },
+  {
+    id: "phone",
+    numeric: false,
+    label: "Phone",
+    width: 100,
+  },
+  {
+    id: "subject",
+    numeric: false,
+    label: "Subject",
+    width: 300,
+  },
+  {
+    id: "message",
+    numeric: false,
+    label: "Message",
+    width: 700,
+  },
+];
+
 export default function SmartTablePage(props) {
-  const headCells = [
-    {
-      id: "email",
-      numeric: false,
-      label: "Email",
-      width: 200,
-    },
-    {
-      id: "name",
-      numeric: false,
-      label: "Name",
-      width: 150,
-    },
-    {
-      id: "phone",
-      numeric: false,
-      label: "Phone",
-      width: 100,
-    },
-    {
-      id: "subject",
-      numeric: false,
-      label: "Subject",
-      width: 300,
-    },
-    {
-      id: "message",
-      numeric: false,
-      label: "Message",
-      width: 700,
-    },
-  ];
+  const [copied, setCopied] = useState("");
 
   const markdownComponents = {
     p(paragraph) {
@@ -69,21 +76,113 @@ export default function SmartTablePage(props) {
 
     code(code) {
       const { className } = code;
-      return (
-        <div className="col-12 p-3">
-          <h2>{className === "language-js" ? "Javascript" : "CSS"}</h2>
-          <div style={{ maxHeight: "400px", overflow: "scroll" }}>
-            <SyntaxHighlighter
-              style={atomDark}
-              language={className === "language-js" ? "javascript" : "css"}
-            >
-              {className === "language-js"
-                ? props.SmartTableJS
-                : props.SmartTableCSS}
-            </SyntaxHighlighter>
-          </div>
-        </div>
-      );
+      
+      switch (className) {
+        case "language-js":
+          return (
+            <div className="col-12 p-3">
+              <div className="row">
+                <div className="col-10">
+                  <h2>Javascript</h2>
+                </div>
+                <div className="col-2 text-end">
+                  {copied === "language-js" ? (
+                    <span>Copied <SVGCheck/></span>
+                  ) : (
+                    <CopyToClipboard
+                      text={props.SmartTableJS}
+                      onCopy={() => setCopied("language-js")}
+                    >
+                      <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                    </CopyToClipboard>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ maxHeight: "400px", overflow: "scroll" }}>
+                <SyntaxHighlighter style={atomDark} language="javascript">
+                  {props.SmartTableJS}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+          );
+
+        case "language-css":
+          return (
+            <div className="col-12 p-3">
+              <div className="row">
+                <div className="col-10">
+                  <h2>CSS</h2>
+                </div>
+                <div className="col-2 text-end">
+                  {copied === "language-css" ? (
+                    <span>Copied <SVGCheck/></span>
+                  ) : (
+                    <CopyToClipboard
+                      text={props.SmartTableCSS}
+                      onCopy={() => setCopied("language-css")}
+                    >
+                    <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                    </CopyToClipboard>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ maxHeight: "400px", overflow: "scroll" }}>
+                <SyntaxHighlighter style={atomDark} language="css">
+                  {props.SmartTableCSS}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+          );
+
+        case "language-use":
+          return (
+            <div className="col-12 p-3">
+              <div className="row">
+                <div className="col-10">
+                  <h2>Use</h2>
+                </div>
+                <div className="col-2 text-end">
+                  {copied === "language-use" ? (
+                    <span>Copied <SVGCheck/></span>
+                  ) : (
+                    <CopyToClipboard
+                      text={`
+                      <SmartTable
+                        title={"Emails"}
+                        url="/api/admin/emails"
+                        headCells={headCells}
+                        searchDebounceTime={800}
+                        // noPagination
+                      />
+                      `}
+                      onCopy={() => setCopied("language-use")}
+                    >
+                    <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                    </CopyToClipboard>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ maxHeight: "400px", overflow: "scroll" }}>
+                <SyntaxHighlighter style={atomDark} language="javascript">
+                  {`
+                  <SmartTable
+                    title={"Emails"}
+                    url="/api/admin/emails"
+                    headCells={headCells}
+                    searchDebounceTime={800}
+                    // noPagination
+                  />
+                  `}
+                </SyntaxHighlighter>
+              </div>
+            </div>
+          );
+        default:
+          return <></>;
+      }
     },
   };
   return (
