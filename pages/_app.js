@@ -7,13 +7,24 @@ import "react-toastify/dist/ReactToastify.css";
 import "nprogress/nprogress.css"; //styles of nprogress
 import "../styles/globals.css";
 import Layout from "../components/Layout";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
+  const [loading, setLoading] = useState(false);
 
-//Binding events.
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
+  //Binding events.
+  Router.events.on("routeChangeStart", () => {
+    NProgress.start();
+    setLoading(true);
+  });
+  Router.events.on("routeChangeComplete", () => {
+    NProgress.done();
+    setLoading(false);
+  });
+  Router.events.on("routeChangeError", () => {
+    NProgress.done();
+    setLoading(false);
+  });
 
   return (
     <>
@@ -27,11 +38,11 @@ Router.events.on("routeChangeError", () => NProgress.done());
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-      <Component {...pageProps} />
+        {loading ? <div>Loading...</div> : <Component {...pageProps} />}
       </Layout>
       <ToastContainer
         position="top-right"
-        style={{top:"55px"}}
+        style={{ top: "55px" }}
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

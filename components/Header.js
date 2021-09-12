@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const Router = useRouter();
   const [openMenu, setOpenMenu] = useState(false);
-  const [session,loading] = useSession();
-  
+  const [session] = useSession();
+
   const Logout = async () => {
     const res = await signOut({ redirect: false });
     Router.replace("/admin/login");
@@ -50,7 +50,7 @@ export default function Header() {
         </div>
         {openMenu && (
           <div className={styles.menu + " row"}>
-                        <div
+            <div
               className={styles.col12}
               onClick={(e) => {
                 e.preventDefault();
@@ -59,7 +59,7 @@ export default function Header() {
             >
               Home
             </div>
-            {session && (
+            {session && Object.keys(session).length > 0 && (
               <div
                 className={styles.col12}
                 onClick={(e) => {
@@ -80,7 +80,7 @@ export default function Header() {
               Admin
             </div>
 
-            {session && (
+            {session && Object.keys(session).length > 0 && (
               <div className={styles.col11}>
                 <Button color="btn-danger" title="Logout" onClick={Logout} />
               </div>
