@@ -38,7 +38,13 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        {loading ? <div>Loading...</div> : <Component {...pageProps} />}
+        {loading ? (
+          <div className="pageLoader">
+            <div className="spinner-border text-primary" role="status"></div>
+          </div>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </Layout>
       <ToastContainer
         position="top-right"

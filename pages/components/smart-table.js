@@ -76,7 +76,7 @@ export default function SmartTablePage(props) {
 
     code(code) {
       const { className } = code;
-      
+
       switch (className) {
         case "language-js":
           return (
@@ -87,13 +87,17 @@ export default function SmartTablePage(props) {
                 </div>
                 <div className="col-2 text-end">
                   {copied === "language-js" ? (
-                    <span>Copied <SVGCheck/></span>
+                    <span>
+                      Copied <SVGCheck />
+                    </span>
                   ) : (
                     <CopyToClipboard
                       text={props.SmartTableJS}
                       onCopy={() => setCopied("language-js")}
                     >
-                      <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                      <span className="pointer" title="Copy">
+                        <SVGClipBoard />
+                      </span>
                     </CopyToClipboard>
                   )}
                 </div>
@@ -116,13 +120,17 @@ export default function SmartTablePage(props) {
                 </div>
                 <div className="col-2 text-end">
                   {copied === "language-css" ? (
-                    <span>Copied <SVGCheck/></span>
+                    <span>
+                      Copied <SVGCheck />
+                    </span>
                   ) : (
                     <CopyToClipboard
                       text={props.SmartTableCSS}
                       onCopy={() => setCopied("language-css")}
                     >
-                    <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                      <span className="pointer" title="Copy">
+                        <SVGClipBoard />
+                      </span>
                     </CopyToClipboard>
                   )}
                 </div>
@@ -145,21 +153,23 @@ export default function SmartTablePage(props) {
                 </div>
                 <div className="col-2 text-end">
                   {copied === "language-use" ? (
-                    <span>Copied <SVGCheck/></span>
+                    <span>
+                      Copied <SVGCheck />
+                    </span>
                   ) : (
                     <CopyToClipboard
-                      text={`
-                      <SmartTable
+                      text={`<SmartTable
                         title={"Emails"}
                         url="/api/admin/emails"
                         headCells={headCells}
                         searchDebounceTime={800}
                         // noPagination
-                      />
-                      `}
+                      />`}
                       onCopy={() => setCopied("language-use")}
                     >
-                    <span className="pointer" title="Copy"><SVGClipBoard /></span>
+                      <span className="pointer" title="Copy">
+                        <SVGClipBoard />
+                      </span>
                     </CopyToClipboard>
                   )}
                 </div>
@@ -167,15 +177,13 @@ export default function SmartTablePage(props) {
 
               <div style={{ maxHeight: "400px", overflow: "scroll" }}>
                 <SyntaxHighlighter style={atomDark} language="javascript">
-                  {`
-                  <SmartTable
+                  {`<SmartTable
                     title={"Emails"}
                     url="/api/admin/emails"
                     headCells={headCells}
                     searchDebounceTime={800}
                     // noPagination
-                  />
-                  `}
+                  />`}
                 </SyntaxHighlighter>
               </div>
             </div>
@@ -189,11 +197,18 @@ export default function SmartTablePage(props) {
     <div>
       <div className="p-3">
         <h1>SmartTable Component</h1>
-        <p>
-          The smart table is a react Components based on HTML, CSS, JavaScript,
-          bootstrap.{" "}
-        </p>
-
+        <div>
+          <p>
+            The SmartTable is a react simple Component based on HTML, CSS,
+            JavaScript, bootstrap.
+          </p>
+          <p>
+            Used for fetching data from a defined <b>api</b> with an option of
+            pagination and search. You can find also many useful options like
+            sorting, selecting columns to show, custom render of cells, fully
+            responsive on all devices, custom react title...
+          </p>
+        </div>
         <h1>Exemple</h1>
       </div>
 
@@ -214,13 +229,13 @@ export default function SmartTablePage(props) {
 export async function getServerSideProps(ctx) {
   const session = await getSession({ req: ctx.req });
 
-  if (!session)
-    return {
-      redirect: {
-        destination: "/admin/login",
-        permanent: false,
-      },
-    };
+  // if (!session)
+  //   return {
+  //     redirect: {
+  //       destination: "/admin/login",
+  //       permanent: false,
+  //     },
+  //   };
 
   const tableMarkdown = getSpecificMarkdown("smartTable.md");
   const SmartTableJS = component("SmartTable/index.js");

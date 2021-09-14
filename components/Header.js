@@ -20,6 +20,12 @@ export default function Header() {
     setOpenMenu(false);
   }, [Router.pathname]);
 
+  const goTo = (e, url) => {
+    e.preventDefault();
+    setOpenMenu(false);
+    Router.push(url);
+  };
+
   return (
     <>
       <div className={cn(styles.container, "col-12")}>
@@ -52,30 +58,21 @@ export default function Header() {
           <div className={styles.menu + " row"}>
             <div
               className={styles.col12}
-              onClick={(e) => {
-                e.preventDefault();
-                Router.push("/");
-              }}
+              onClick={(e) => goTo(e,"/")}
             >
               Home
             </div>
-            {session && Object.keys(session).length > 0 && (
-              <div
-                className={styles.col12}
-                onClick={(e) => {
-                  e.preventDefault();
-                  Router.push("/components/smart-table");
-                }}
-              >
-                Smart Table
-              </div>
-            )}
+
             <div
               className={styles.col12}
-              onClick={(e) => {
-                e.preventDefault();
-                Router.push("/admin");
-              }}
+              onClick={(e) => goTo(e, "/components/smart-table")}
+            >
+              SmartTable Component
+            </div>
+
+            <div
+              className={styles.col12}
+              onClick={(e) => goTo(e, "/admin")}
             >
               Admin
             </div>
