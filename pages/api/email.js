@@ -24,7 +24,7 @@ export default async function email(req, res) {
   sgMail.setApiKey(process.env.NEXT_PUBLIC_EMAIL_KEY);
   const msg = {
     to: "amineamine.dev@gmail.com",
-    from: "aamine@bright-lab.com",
+    from: "noreply@simplecode.app",
     subject: `Email from ${body.name} <?${body.email}>`,
     text: body.subject,
     html: `<p><h3>${body.subject}</h3> ${body.message}</p>`,
@@ -34,7 +34,7 @@ export default async function email(req, res) {
     .then(() => {
       const msg = {
         to: body.email,
-        from: "aamine@bright-lab.com",
+        from: "noreply@simplecode.app",
         subject: `Welcome to Amine Portfolio`,
         text: body.subject,
         html: `<p>
