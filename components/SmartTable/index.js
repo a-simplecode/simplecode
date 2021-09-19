@@ -9,7 +9,7 @@ function SmartTable(props) {
   const [loading, setLoading] = useState(false);
   const [sortDesc, setSortDesc] = useState({});
   const [tableWidth, setTableWidth] = useState(1000);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(props.data ?? []);
 
   const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(props.rowsPerPage ?? 10);
@@ -21,7 +21,7 @@ function SmartTable(props) {
 
   useEffect(() => {
     tableWidthFunc();
-    fetchData();
+    if (props.url && !props.data) fetchData(`?limit=${rowsPerPage}`);
   }, [props.url, props.headCells]);
 
   const fetchData = async (queryString) => {
@@ -76,11 +76,23 @@ function SmartTable(props) {
     };
   };
 
-  const handleChange = debounce((event) => {
+  const handleSearch = debounce((event) => {
     const { value } = event.target;
     setSearch(value);
-    fetchData(buildQueryString(value, page, rowsPerPage));
-  }, props.searchDebounceTime ?? 300);
+    if (props.data) {
+      let bool = false;
+      let tempData = props.data.filter((row) => {
+        bool = false;
+        Object.keys(row).forEach((key) => {
+          if (row[key].toLowerCase().includes(value.toLowerCase())) bool = true;
+        });
+        return bool;
+      });
+      setData(tempData);
+    } else if (props.url) {
+      fetchData(buildQueryString(value, page, rowsPerPage));
+    }
+  }, props.searchDebounceTime ?? 800);
 
   const sortData = (cell) => {
     let tempData = [...data];
@@ -112,7 +124,7 @@ function SmartTable(props) {
                 type="text"
                 className="form-control"
                 placeholder="Search..."
-                onChange={handleChange}
+                onChange={handleSearch}
               />
             </div>
           </div>
@@ -181,7 +193,10 @@ function SmartTable(props) {
               </div>
             </div>
           )}
-          {props.noPagination || data.length === 0 ? (
+          {props.noPagination ||
+          data.length === 0 ||
+          !props.url ||
+          props.data ? (
             <div className="row">
               <div className="col-12 text-end p-3">
                 {data.length > 0 ? data.length : 0} Rows
