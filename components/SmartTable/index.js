@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SVGArrowDown from "./icons/SVGArrowDown";
 import SVGArrowUp from "./icons/SVGArrowUp";
 import SVGChevronLeft from "./icons/SVGChevronLeft";
@@ -19,31 +19,51 @@ function SmartTable(props) {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
 
+  const fetchData = useCallback(
+    async (queryString) => {
+      setLoading(true);
+
+      try {
+        const response = await fetch(
+          props.url + (queryString ? queryString : ""),
+          {
+            method: "get",
+          }
+        );
+        const data = await response.json();
+        if (data && data.data) {
+          setData(data.data.result ?? []);
+          setTotal(data.data.total, 0);
+        }
+      } catch (e) {
+        console.log("Fetch error", e.message);
+      }
+      setLoading(false);
+    },
+    [props.url]
+  );
+
+  const tableWidthFunc = useCallback(() => {
+    let tempTableWidth = 0;
+    props.headCells.map((cell) => {
+      tempTableWidth += cell.width;
+    });
+
+    if (tempTableWidth) setTableWidth(tempTableWidth);
+  }, [props.headCells]);
+
   useEffect(() => {
     tableWidthFunc();
-    if (props.url && !props.data) fetchData(`?limit=${rowsPerPage}`);
-  }, [props.url, props.headCells]);
-
-  const fetchData = async (queryString) => {
-    setLoading(true);
-
-    try {
-      const response = await fetch(
-        props.url + (queryString ? queryString : ""),
-        {
-          method: "get",
-        }
-      );
-      const data = await response.json();
-      if (data && data.data) {
-        setData(data.data.result ?? []);
-        setTotal(data.data.total, 0);
-      }
-    } catch (e) {
-      console.log("Fetch error", e.message);
-    }
-    setLoading(false);
-  };
+    if (props.url && !props.data)
+      fetchData(`?limit=${props.rowsPerPage ?? 10}`);
+  }, [
+    props.url,
+    props.data,
+    props.rowsPerPage,
+    props.headCells,
+    tableWidthFunc,
+    fetchData,
+  ]);
 
   const buildQueryString = (search, page, rowsPerPage) => {
     const queries = [];
@@ -55,15 +75,6 @@ function SmartTable(props) {
     const queryString = queries.join("&");
 
     return queryString ? `?${queryString}` : "";
-  };
-
-  const tableWidthFunc = () => {
-    let tempTableWidth = 0;
-    props.headCells.map((cell) => {
-      tempTableWidth += cell.width;
-    });
-
-    if (tempTableWidth) setTableWidth(tempTableWidth);
   };
 
   const debounce = (func, timeout = 300) => {
