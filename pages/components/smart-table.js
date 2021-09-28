@@ -140,13 +140,13 @@ export default function SmartTablePage(props) {
 export async function getServerSideProps(ctx) {
   const session = await getSession({ req: ctx.req });
 
-  // if (!session)
-  //   return {
-  //     redirect: {
-  //       destination: "/admin/login",
-  //       permanent: false,
-  //     },
-  //   };
+  if (!session)
+    return {
+      redirect: {
+        destination: "/admin/login",
+        permanent: false,
+      },
+    };
 
   const tableMarkdown = getSpecificMarkdown("smartTable.md");
   const SmartTableJS = component("SmartTable/index.js");

@@ -3,6 +3,7 @@ import Router from "next/router";
 import { ToastContainer, Slide } from "react-toastify";
 import NProgress from "nprogress"; //nprogress module
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-next-table/dist/SmartTable.css";
 import "react-toastify/dist/ReactToastify.css";
 import "nprogress/nprogress.css"; //styles of nprogress
 import "../styles/globals.css";

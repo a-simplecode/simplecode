@@ -1,4 +1,4 @@
-import SmartTable from "./index";
+import SmartTable from "react-next-table";
 
 const headCells = [
   {
