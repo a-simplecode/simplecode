@@ -13,7 +13,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import SVGClipBoard from "../../components/icons/SVGClipboard";
 import SVGCheck from "../../components/icons/SVGCheck";
-import Exemple from "../../components/SmartTable/Exemple";
+import SmartTable from "../../components/SmartTable.js";
 
 SyntaxHighlighter.registerLanguage("js", js);
 SyntaxHighlighter.registerLanguage("css", css);
@@ -76,25 +76,6 @@ export default function SmartTablePage(props) {
       const { className } = code;
 
       switch (className) {
-        case "language-js":
-          return codeViewer(
-            "Javascript",
-            copied,
-            "language-js",
-            props.SmartTableJS,
-            "javascript",
-            setCopied
-          );
-
-        case "language-css":
-          return codeViewer(
-            "CSS",
-            copied,
-            "language-css",
-            props.SmartTableCSS,
-            "css",
-            setCopied
-          );
 
         case "language-use":
           return codeViewer(
@@ -129,7 +110,7 @@ export default function SmartTablePage(props) {
         <h1>Exemple</h1>
       </div>
 
-      <Exemple />
+      <SmartTable />
       <ReactMarkdown components={markdownComponents}>
         {props.tableMarkdown.content}
       </ReactMarkdown>
@@ -149,16 +130,12 @@ export async function getServerSideProps(ctx) {
     };
 
   const tableMarkdown = getSpecificMarkdown("smartTable.md");
-  const SmartTableJS = component("SmartTable/index.js");
-  const SmartTableCSS = component("SmartTable/SmartTable.module.css");
-  const SmartTableExemple = component("SmartTable/Exemple.js");
+  const SmartTableExemple = component("SmartTable.js");
 
   return {
     props: {
       session,
       tableMarkdown: tableMarkdown,
-      SmartTableJS: SmartTableJS,
-      SmartTableCSS: SmartTableCSS,
       SmartTableExemple: SmartTableExemple,
     },
   };

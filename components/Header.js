@@ -65,9 +65,9 @@ export default function Header() {
 
             <div
               className={styles.col12}
-              onClick={(e) => goTo(e, "/components/smart-table")}
+              onClick={(e) => goTo(e, "/packages")}
             >
-              SmartTable Component
+              Packages
             </div>
 
             <div
