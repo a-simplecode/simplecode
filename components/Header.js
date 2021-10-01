@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/client";
 import cn from "classnames";
+import Image from "next/image";
 import Button from "./Button";
 import styles from "../styles/Header.module.css";
 import SVGBurgerMenu from "./icons/SVGBurgerMenu";
@@ -38,8 +39,13 @@ export default function Header() {
                 Router.push("/");
               }}
             >
-              {" "}
-              &lt;SimpleCode/&gt;{" "}
+              <Image
+                src="/images/simpleCode.png"
+                alt="SimpleCode image"
+                width={30}
+                height={25}
+              />{" "}
+              SimpleCode
             </span>
           </div>
           <div className={cn("col-4", styles.buttons)}>
@@ -56,24 +62,15 @@ export default function Header() {
         </div>
         {openMenu && (
           <div className={styles.menu + " row"}>
-            <div
-              className={styles.col12}
-              onClick={(e) => goTo(e,"/")}
-            >
+            <div className={styles.col12} onClick={(e) => goTo(e, "/")}>
               Home
             </div>
 
-            <div
-              className={styles.col12}
-              onClick={(e) => goTo(e, "/packages")}
-            >
+            <div className={styles.col12} onClick={(e) => goTo(e, "/packages")}>
               Packages
             </div>
 
-            <div
-              className={styles.col12}
-              onClick={(e) => goTo(e, "/admin")}
-            >
+            <div className={styles.col12} onClick={(e) => goTo(e, "/admin")}>
               Admin
             </div>
 

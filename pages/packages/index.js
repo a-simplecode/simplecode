@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Image from "next/image";
 import styles from "../../styles/packages.module.css";
 
 export default function Packages() {
@@ -29,7 +30,7 @@ export default function Packages() {
       </div>
 
       <div className="card pointer" onClick={goToPackage}>
-        <div className="h5">react-next-table</div>
+        <div className="h4 text-primary">react-next-table</div>
         <div>
           The SmartTable is a react simple Component based on HTML, CSS,
           JavaScript, bootstrap. Used for fetching data from a defined api with
@@ -38,22 +39,41 @@ export default function Packages() {
           cells, fully responsive on all devices, custom react title...
         </div>
         <div className={styles.footer}>
-          <img
-            src="https://img.shields.io/npm/dm/react-next-table"
-            alt="Downloads"
-          />
-          <img
-            src="https://img.shields.io/github/stars/a-simplecode/react-next-table"
-            alt="Github Stars"
-          />
-          <img
-            src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?label=latest"
-            alt="Github Stable Release"
-          />
-          <img
-            src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?include_prereleases&label=prerelease&sort=semver"
-            alt="Github Prelease"
-          />
+          <span>
+            <Image
+              width={140}
+              height={20}
+              src="https://img.shields.io/npm/dm/react-next-table"
+              alt="Downloads"
+            />
+          </span>
+
+          <span>
+            <Image
+              width={54}
+              height={20}
+              src="https://img.shields.io/github/stars/a-simplecode/react-next-table"
+              alt="Github Stars"
+            />
+          </span>
+
+          <span>
+            <Image
+              width={86}
+              height={20}
+              src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?label=latest"
+              alt="Github Stable Release"
+            />
+          </span>
+
+          <span>
+            <Image
+              width={112}
+              height={20}
+              src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?include_prereleases&label=prerelease&sort=semver"
+              alt="Github Prelease"
+            />
+          </span>
         </div>
       </div>
     </div>
