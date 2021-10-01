@@ -44,7 +44,9 @@ export default function PackageName(props) {
       return <span className="pointer text-primary mx-1">{href.children}</span>;
     },
     table(table){
-      return <table>{table.children}</table>
+      return <div className="my-5">
+        <table>{table.children}</table>
+        </div>
     },
     p(paragraph) {
       return (
