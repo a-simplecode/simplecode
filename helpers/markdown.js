@@ -8,11 +8,11 @@ const markdownDir = path.join(process.cwd(), "markdown");
 
 export function getPackageREADME(packageName) {
   // const packageDir = path.join(node_modules, packageName);
-  const READMEPath = path.join(markdownDir, "README.md");//packageDir
+  const READMEPath = path.join(markdownDir, packageName+".md");//packageDir
   const fileContent = fs.readFileSync(READMEPath, "utf-8");
   const { data, content } = matter(fileContent);
 
-  const tableSlug = packageName.replace(/\.md$/, ""); //removes the file extension
+  const tableSlug = packageName.replace(/\.md$/, "");
 
   const postData = {
     slug: tableSlug,

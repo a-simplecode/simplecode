@@ -39,6 +39,22 @@ export default function Packages() {
           cells, fully responsive on all devices, custom react title...
         </div>
         <div className={styles.footer}>
+      <span>
+            <Image
+              width={112}
+              height={20}
+              src="https://packagequality.com/shield/react-next-table"
+              alt="Quality"
+            />
+          </span> 
+          <span>
+            <Image
+              width={140}
+              height={20}
+              src="https://img.shields.io/bundlephobia/minzip/react-next-table" 
+              alt="Bundle Size"
+            />
+          </span>
           <span>
             <Image
               width={140}

@@ -41,7 +41,7 @@ export default function PackageName(props) {
 
   const markdownComponents = {
     a(href) {
-      return <span className="pointer text-primary mx-1">{href.children}</span>;
+      return <a href={href.href} target="_blank" className="pointer text-primary mx-1">{href.children}</a>;
     },
     table(table){
       return <div className="my-5">
