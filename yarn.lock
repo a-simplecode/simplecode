@@ -3046,10 +3046,10 @@ react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-next-table@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-next-table/-/react-next-table-1.0.2.tgz#1741e259f392627742be1bc7ef0ebe1efb1f4f78"
-  integrity sha512-oXwqx/T9bKZFHLYwuSweIG4bgzKzl7EVz44xXtmZbc28WBj0HX3pg3gY0n2Cqn8B2iaNVy7c6+rrFeGss970SA==
+react-next-table@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-next-table/-/react-next-table-1.0.7.tgz#1bc1d52d9a48f7b5dbd370d53ad343d88c254e34"
+  integrity sha512-bMvujzs47JNpbZCqDdnt20qXpV9KlL7zIj3SUFjyjtajx2aedwseTY/QJFpqzCXClP5ByXL0mlJLo8l7ythTEg==
   dependencies:
     core-js "^3.18.1"
 

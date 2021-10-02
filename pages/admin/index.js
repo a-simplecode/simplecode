@@ -1,13 +1,11 @@
 import { getSession } from "next-auth/client";
-import SmartTable from "../../components/SmartTable";
+import SmartTable from "react-next-table";
 
 export default function Home(props) {
   const headCells = [
     {
       id: "email",
       numeric: false,
-      // sortable: false,
-      // render: (row)=> <div style={{color: "red"}}>{row.email} {row.name}</div>,
       label: "Email",
       width: 200,
     },
@@ -41,10 +39,9 @@ export default function Home(props) {
     <div>
       <SmartTable
         title={"Emails"}
-        url="/api/admin/emails"
+        // data={[]}
+      url="https://www.simplecode.app/api/admin/emails"
         headCells={headCells}
-        searchDebounceTime={800}
-        // noPagination
       />
     </div>
   );
@@ -63,7 +60,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      session
+      session,
     },
   };
 }
