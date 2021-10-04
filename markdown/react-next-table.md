@@ -1,6 +1,5 @@
 <p align="center">
    <br/>
-   <a href="https://wwww.simplecode.app" target="_blank"><h1 align="center">SimpleCode</h1></a>
    <h3 align="center">SmartTable.js</h3>
    <p align="center">light weight bootstrap smart table</p>
    <p align="center">
@@ -8,7 +7,7 @@
    </p>
    <p align="center">
       <a href="https://packagequality.com/#?package=react-next-table">
-        <img src="https://packagequality.com/shield/react-next-table.svg" alt="Bundle Size"/>
+        <img src="https://packagequality.com/shield/react-next-table.svg" alt="Package Quality"/>
       </a>
       <a href="https://bundlephobia.com/result?p=react-next-table">
         <img src="https://img.shields.io/bundlephobia/minzip/react-next-table" alt="Bundle Size"/>

@@ -4,7 +4,7 @@
     z-index: 4;
     background-color: WHITE;
     WIDTH: 100%;
-    padding: 10px 10px 0px 10px;
+    padding: 0px 10px 0px 10px;
     border-bottom: 1px solid #0070f3;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -13,12 +13,20 @@
 }
 
 .buttons{
+    margin-top: 10px;
     text-align: right;
 }
 .logo{
-    text-shadow: 1px 1px rgb(0 113 243 / 40%);
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    width: 186px;
+}
+.logoText{
+    text-shadow: 1px 1px rgb(0 113 243 / 40%);
     color: #0d6efd;
+    margin-left: 5px;
+    font-size: 24px;
 }
 
 .menu{

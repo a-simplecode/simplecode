@@ -30,10 +30,10 @@ export default function Header() {
   return (
     <>
       <div className={cn(styles.container, "col-12")}>
-        <div className="row pb-2">
+        <div className="row">
           <div className="col-8">
             <span
-              className={cn(styles.logo, "h3")}
+              className={styles.logo}
               onClick={(e) => {
                 e.preventDefault();
                 Router.push("/");
@@ -42,10 +42,10 @@ export default function Header() {
               <Image
                 src="/images/simpleCode.png"
                 alt="SimpleCode image"
-                width={30}
-                height={25}
-              />{" "}
-              SimpleCode
+                width={50}
+                height={50}
+              />
+              <span className={cn(styles.logoText)}>SimpleCode</span>
             </span>
           </div>
           <div className={cn("col-4", styles.buttons)}>
