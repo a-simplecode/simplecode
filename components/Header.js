@@ -3,9 +3,16 @@ import { useSession, signOut } from "next-auth/client";
 import cn from "classnames";
 import Image from "next/image";
 import Button from "./Button";
-import styles from "../styles/Header.module.css";
+import styles from "./Header.module.css";
 import SVGBurgerMenu from "./icons/SVGBurgerMenu";
 import { useEffect, useState } from "react";
+
+const menuList = [
+  { name: "Home", url: "/" },
+  { name: "Packages", url: "/packages" },
+  { name: "Admin", url: "/admin" },
+  { name: "Get in touch", url: "/get-in-touch" },
+];
 
 export default function Header() {
   const Router = useRouter();
@@ -31,7 +38,7 @@ export default function Header() {
     <>
       <div className={cn(styles.container, "col-12")}>
         <div className="row">
-          <div className="col-8">
+          <div className="col-3">
             <span
               className={styles.logo}
               onClick={(e) => {
@@ -48,9 +55,9 @@ export default function Header() {
               <span className={cn(styles.logoText)}>SimpleCode</span>
             </span>
           </div>
-          <div className={cn("col-4", styles.buttons)}>
+          <div className={cn("col-9", styles.buttons)}>
             <span
-              className="pointer"
+              className="pointer hidden_pc"
               onClick={(e) => {
                 e.preventDefault();
                 setOpenMenu(!openMenu);
@@ -58,6 +65,24 @@ export default function Header() {
             >
               <SVGBurgerMenu />
             </span>
+            {menuList.map((menu) => (
+              <span
+                key={"pc_" + menu.url}
+                className={cn(
+                  styles.menuItemPC,
+                  "hidden_mobile",
+                  Router.pathname === menu.url ? styles.active : ""
+                )}
+                onClick={(e) => goTo(e, menu.url)}
+              >
+                {menu.name}
+              </span>
+            ))}
+            {session && Object.keys(session).length > 0 && (
+              <span className="hidden_mobile">
+                <Button color="btn-danger" title="Logout" onClick={Logout} />
+              </span>
+            )}
           </div>
         </div>
         {openMenu && (

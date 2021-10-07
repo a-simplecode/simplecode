@@ -1,0 +1,76 @@
+.container {
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  background-color: WHITE;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+  border-bottom: 1px solid #0070f3;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 5px 25px 0 rgb(0 113 243 / 40%);
+  max-width: 1200px;
+}
+
+.buttons {
+  margin-top: 10px;
+  text-align: right;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 186px;
+}
+.logoText {
+  text-shadow: 1px 1px rgb(0 113 243 / 40%);
+  color: #0d6efd;
+  margin-left: 5px;
+  font-size: 24px;
+}
+
+.menu {
+  margin-top: 10px;
+}
+
+.menu .col11 {
+  padding: 15px 0px 15px 30px;
+  width: 100%;
+  position: relative;
+  font-family: "ApisRegular" !important;
+  font-size: 17px;
+}
+
+.menu .col12 {
+  cursor: pointer;
+  padding: 15px 0px 15px 30px;
+  width: 100%;
+  position: relative;
+  font-family: "ApisRegular" !important;
+  font-size: 17px;
+}
+
+.menu .col12:hover {
+  color: #0070f3;
+  background-color: lightblue;
+}
+
+.menu div:nth-child(odd) {
+  background-color: rgb(228, 227, 227, 0.6);
+}
+
+.menuItemPC {
+  margin: 0 2%;
+  padding: 6px 3% 8px 3%;
+  cursor: pointer;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+.menuItemPC:hover,
+.menuItemPC:active,
+.menuItemPC:focus,
+.menuItemPC.active {
+  color: #0070f3;
+  border-color: #0070f3;
+  box-shadow: 0 5px 25px 0 rgb(0 113 243 / 40%);
+}

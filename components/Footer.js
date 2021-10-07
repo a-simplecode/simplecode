@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import styles from "../styles/Footer.module.css";
+import styles from "./Footer.module.css";
 import SVGInstagram from "./icons/SVGInstagram";
 import SVGFacebook from "./icons/SVGFacebook";
 import SVGLinkedin from "./icons/SVGLinkedin";

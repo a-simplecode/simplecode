@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import styles from "../styles/GetInTouch.module.css";
+import styles from "./GetInTouch.module.css";
 import { toast } from "react-toastify";
 import Button from "./Button";
 
