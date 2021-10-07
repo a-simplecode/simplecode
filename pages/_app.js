@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="I'am a full stack developer specialized in Web Development as Next JS (Pre-rendering), React JS (Hooks and context), JavaScript, Redux, HTML, CSS. I also write the simplest code possible, fully SEO and code reusability with high performance for having the best websites."
         />
-        <link rel="icon" href="/images/simpleCode.ico" />
+        <link rel="icon" href="/images/simpleCode2.ico" />
       </Head>
       <Layout>
         {loading ? (
