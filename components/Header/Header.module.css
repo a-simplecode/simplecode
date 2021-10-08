@@ -50,7 +50,10 @@
   font-size: 17px;
 }
 
-.menu .col12:hover {
+.menu .col12:hover,
+.menu .col12:active,
+.menu .col12:focus,
+.menu .col12.active {
   color: #0070f3;
   background-color: lightblue;
 }

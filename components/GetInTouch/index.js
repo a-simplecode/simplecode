@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./GetInTouch.module.css";
 import { toast } from "react-toastify";
-import Button from "./Button";
+import Button from "../Button";
 
 const Validate = (values) => {
   const errors = {};
