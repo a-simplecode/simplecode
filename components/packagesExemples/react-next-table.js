@@ -36,7 +36,7 @@ const headCells = [
     id: "date",
     numeric: false,
     label: "Date",
-    render: (row)=> dateRender(row),
+    render: (row)=> dateRender(row.date),
     width: 300,
   },
 ];
