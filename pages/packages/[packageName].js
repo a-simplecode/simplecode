@@ -11,6 +11,7 @@ import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import SVGClipBoard from "../../components/icons/SVGClipboard";
 import SVGCheck from "../../components/icons/SVGCheck";
+import Exemple from "../../components/packagesExemples/react-next-table"
 
 function MDCode(children, key, copied, setCopied) {
   return (
@@ -69,13 +70,15 @@ export default function PackageName(props) {
   };
   return (
     <div className="px-3">
+      <div className="h2">Live Demo:</div>
+      <Exemple />
       <Markdown options={{ overrides: markdownComponents }}>
         {props.packageREADME.content}
       </Markdown>
       <style global jsx>{`
         table,th,tr,td{
           border: 1px solid black;
-          padding: 5px
+          padding: 5px !important;
         }
       `}</style>
     </div>
