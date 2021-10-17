@@ -1,10 +1,5 @@
 import SmartTable from "react-next-table";
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import { getSession } from "next-auth/client";
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 const headCells = [
   {
@@ -41,10 +36,14 @@ const headCells = [
     id: "date",
     numeric: false,
     label: "Date",
-    render: (row)=> <div className="text-center">{dayjs(row.date).format("DD/MM/YYYY HH:mm:ss")}</div>,
+    render: (row)=> dateRender(row),
     width: 300,
   },
 ];
+
+const dateRender = (date)=>{
+  return <div className="text-center">{dayjs(date).format("DD/MM/YYYY HH:mm:ss")}</div>
+}
 
 export default function Exemple() {
   return (
