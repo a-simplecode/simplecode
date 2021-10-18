@@ -1,0 +1,20 @@
+.simplecodeSpinner {
+    animation: fadeinout 0.8s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes fadeinout {
+    0% {
+      opacity: 0.5;
+      margin-top: 10px;
+    }
+    50% {
+      opacity: 1;
+      margin-top: -10px;
+    }
+    100% {
+      opacity: 0.5;
+      margin-top: 10px;
+    }
+  }
+  

@@ -9,6 +9,7 @@ import "nprogress/nprogress.css"; //styles of nprogress
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 import { useState } from "react";
+import CustomSpinner from "../components/CustomSpinner";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         {loading ? (
           <div className="pageLoader">
-            <div className="spinner-border text-primary" role="status"></div>
+            <CustomSpinner/>
           </div>
         ) : (
           <Component {...pageProps} />

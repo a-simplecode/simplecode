@@ -45,11 +45,12 @@ const dateRender = (date)=>{
   return <div className="text-center">{dayjs(date).format("DD/MM/YYYY HH:mm:ss")}</div>
 }
 
-export default function Exemple() {
+export default function Exemple(props) {
   return (
     <SmartTable
       title="Emails"
       url="/api/packages/react-next-table"
+      // data={props.data ?? []}
       headCells={headCells}
       searchDebounce={900}
       rowsPerPage={5}

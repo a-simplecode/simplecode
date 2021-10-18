@@ -11,7 +11,7 @@ import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import SVGClipBoard from "../../components/icons/SVGClipboard";
 import SVGCheck from "../../components/icons/SVGCheck";
-import Exemple from "../../components/packagesExemples/react-next-table"
+import Exemple from "../../components/packagesExemples/react-next-table";
 
 function MDCode(children, key, copied, setCopied) {
   return (
@@ -42,12 +42,23 @@ export default function PackageName(props) {
 
   const markdownComponents = {
     a(href) {
-      return <a href={href.href} rel="noreferrer" target="_blank" className="pointer text-primary mx-1">{href.children}</a>;
+      return (
+        <a
+          href={href.href}
+          rel="noreferrer"
+          target="_blank"
+          className="pointer text-primary mx-1"
+        >
+          {href.children}
+        </a>
+      );
     },
-    table(table){
-      return <div className="my-5">
-        <table>{table.children}</table>
+    table(table) {
+      return (
+        <div className="my-5">
+          <table>{table.children}</table>
         </div>
+      );
     },
     p(paragraph) {
       return (
@@ -71,12 +82,15 @@ export default function PackageName(props) {
   return (
     <div className="px-3">
       <div className="h2">Live Demo:</div>
-      <Exemple />
+      <Exemple data={props.data} />
       <Markdown options={{ overrides: markdownComponents }}>
         {props.packageREADME.content}
       </Markdown>
       <style global jsx>{`
-        table,th,tr,td{
+        table,
+        th,
+        tr,
+        td {
           border: 1px solid black;
           padding: 5px !important;
         }
@@ -89,10 +103,24 @@ export async function getServerSideProps(ctx) {
   const packageName = ctx.query.packageName;
   const packageREADME = getPackageREADME(packageName);
 
+  let data = [];
+  try {
+    const response = await fetch(
+      "https://www.simplecode.app/api/packages/react-next-table?limit=5",
+      {
+        method: "get",
+      }
+    );
+    data = await response.json();
+  } catch (error) {
+    console.log("error", error.message);
+  }
+
   return {
     props: {
       packageName,
       packageREADME,
+      data: data.data.result,
     },
   };
 }
