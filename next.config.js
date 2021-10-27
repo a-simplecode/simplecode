@@ -10,5 +10,4 @@ module.exports = withPWA({
       "packagequality.com"
     ]
   },
-  reactStrictMode: true,
 });

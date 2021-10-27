@@ -33,3 +33,13 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# PWA dev
+/public/sw.js.map
+/public/workbox-1ffba242.js
+/public/workbox-1ffba242.js.map
+
+# PWA build
+/public/sw.js
+/public/workbox-4a677df8.js
+/public/fallback-Jga8_1hR7S61HlGTmP81T.js

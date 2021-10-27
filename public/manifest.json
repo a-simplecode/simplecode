@@ -6,5 +6,12 @@
     "theme_color": "#FFFFFF",
     "background_color": "#FFFFFF",
     "start_url": "/",
-    "icons": []
+    "icons": [
+      {
+        "src": "/images/simpleCode.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ]
   }
