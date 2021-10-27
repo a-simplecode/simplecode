@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Amine Amine</title>
-        <meta name="viewport" content="initial-scale=1.0 width=device-width" />
+        <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover' />
         <meta
           name="description"
           content="I'am a full stack developer specialized in Web Development as Next JS (Pre-rendering), React JS (Hooks and context), JavaScript, Redux, HTML, CSS. I also write the simplest code possible, fully SEO and code reusability with high performance for having the best websites."
