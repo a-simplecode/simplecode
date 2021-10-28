@@ -83,9 +83,9 @@ export default function PackageName(props) {
     <div className="px-3">
       <div className="h2">Live Demo:</div>
       <Exemple data={props.data} />
-      <Markdown options={{ overrides: markdownComponents }}>
+      {/* <Markdown options={{ overrides: markdownComponents }}>
         {props.packageREADME.content}
-      </Markdown>
+      </Markdown> */}
       <style global jsx>{`
         table,
         th,
@@ -101,26 +101,26 @@ export default function PackageName(props) {
 
 export async function getServerSideProps(ctx) {
   const packageName = ctx.query.packageName;
-  const packageREADME = getPackageREADME(packageName);
+  // const packageREADME = getPackageREADME(packageName);
 
   let data = [];
-  // try {
-  //   const response = await fetch(
-  //     "https://www.simplecode.app/api/packages/react-next-table?limit=5",
-  //     {
-  //       method: "get",
-  //     }
-  //   );
-  //   let data_ = await response.json();
-  //   data = data_.data.result
-  // } catch (error) {
-  //   console.log("error", error.message);
-  // }
+  try {
+    const response = await fetch(
+      "https://www.simplecode.app/api/packages/react-next-table?limit=5",
+      {
+        method: "get",
+      }
+    );
+    let data_ = await response.json();
+    data = data_.data.result
+  } catch (error) {
+    console.log("error", error.message);
+  }
 
   return {
     props: {
       packageName,
-      packageREADME,
+      // packageREADME,
       data,
     },
   };
