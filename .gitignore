@@ -38,6 +38,7 @@ yarn-error.log*
 /public/sw.js.map
 /public/workbox-1ffba242.js
 /public/workbox-1ffba242.js.map
+/public/fallback-development.js
 
 # PWA build
 /public/sw.js

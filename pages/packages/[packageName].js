@@ -11,7 +11,7 @@
 // import { CopyToClipboard } from "react-copy-to-clipboard";
 // import SVGClipBoard from "../../components/icons/SVGClipboard";
 // import SVGCheck from "../../components/icons/SVGCheck";
-// import Exemple from "../../components/packagesExemples/react-next-table";
+import Exemple from "../../components/packagesExemples/react-next-table";
 
 // function MDCode(children, key, copied, setCopied) {
 //   return (
@@ -82,11 +82,11 @@ export default function PackageName(props) {
   return (
     <div className="px-3">
       <div className="h2">Live Demo:</div>
-      {/* <Exemple data={props.data} /> */}
+      <Exemple data={props.data} />
       {/* <Markdown options={{ overrides: markdownComponents }}>
         {props.packageREADME.content}
       </Markdown> */}
-      {/* <style global jsx>{`
+      <style global jsx>{`
         table,
         th,
         tr,
@@ -94,7 +94,7 @@ export default function PackageName(props) {
           border: 1px solid black;
           padding: 5px !important;
         }
-      `}</style> */}
+      `}</style>
     </div>
   );
 }
@@ -103,19 +103,19 @@ export async function getServerSideProps(ctx) {
   // const packageName = ctx.query.packageName;
   // const packageREADME = getPackageREADME(packageName);
 
-  // let data = [];
-  // try {
-  //   const response = await fetch(
-  //     "https://www.simplecode.app/api/packages/react-next-table?limit=5",
-  //     {
-  //       method: "get",
-  //     }
-  //   );
-  //   let data_ = await response.json();
-  //   data = data_.data.result
-  // } catch (error) {
-  //   console.log("error", error.message);
-  // }
+  let data = [];
+  try {
+    const response = await fetch(
+      "https://www.simplecode.app/api/packages/react-next-table?limit=5",
+      {
+        method: "get",
+      }
+    );
+    let data_ = await response.json();
+    data = data_.data.result
+  } catch (error) {
+    console.log("error", error.message);
+  }
 
   return {
     props: {
