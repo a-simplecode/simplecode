@@ -111,7 +111,8 @@ export async function getServerSideProps(ctx) {
         method: "get",
       }
     );
-    data = await response.json();
+    let data_ = await response.json();
+    data = data_.data.result
   } catch (error) {
     console.log("error", error.message);
   }
@@ -120,7 +121,7 @@ export async function getServerSideProps(ctx) {
     props: {
       packageName,
       packageREADME,
-      data: data.data.result,
+      data,
     },
   };
 }
