@@ -86,7 +86,7 @@ export default function PackageName(props) {
       {/* <Markdown options={{ overrides: markdownComponents }}>
         {props.packageREADME.content}
       </Markdown> */}
-      <style global jsx>{`
+      {/* <style global jsx>{`
         table,
         th,
         tr,
@@ -94,13 +94,13 @@ export default function PackageName(props) {
           border: 1px solid black;
           padding: 5px !important;
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 }
 
 export async function getServerSideProps(ctx) {
-  const packageName = ctx.query.packageName;
+  // const packageName = ctx.query.packageName;
   // const packageREADME = getPackageREADME(packageName);
 
   // let data = [];
@@ -119,7 +119,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      packageName,
+      // packageName,
       // packageREADME,
       data,
     },
