@@ -104,18 +104,18 @@ export async function getServerSideProps(ctx) {
   const packageREADME = getPackageREADME(packageName);
 
   let data = [];
-  try {
-    const response = await fetch(
-      "https://www.simplecode.app/api/packages/react-next-table?limit=5",
-      {
-        method: "get",
-      }
-    );
-    let data_ = await response.json();
-    data = data_.data.result
-  } catch (error) {
-    console.log("error", error.message);
-  }
+  // try {
+  //   const response = await fetch(
+  //     "https://www.simplecode.app/api/packages/react-next-table?limit=5",
+  //     {
+  //       method: "get",
+  //     }
+  //   );
+  //   let data_ = await response.json();
+  //   data = data_.data.result
+  // } catch (error) {
+  //   console.log("error", error.message);
+  // }
 
   return {
     props: {
