@@ -2,7 +2,9 @@ const withPWA = require('next-pwa');
 
 module.exports = withPWA({
   pwa: {
-    dest: 'public'
+    dest: 'public',
+    register: true,
+    skipWaiting: true,
   },
   images:{
     domains:[
@@ -10,4 +12,5 @@ module.exports = withPWA({
       "packagequality.com"
     ]
   },
+  reactStrictMode: true,
 });
