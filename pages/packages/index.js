@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import Image from "next/image";
-import styles from "../../styles/packages.module.css";
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import styles from '../../styles/packages.module.css';
 
 export default function Packages() {
   const Router = useRouter();
 
   const goToPackage = (e) => {
     e.preventDefault();
-    Router.push("/packages/react-next-table");
+    Router.push('/packages/react-next-table');
   };
 
   const handleSearch = (e) => {
@@ -39,37 +39,44 @@ export default function Packages() {
           cells, fully responsive on all devices, custom react title...
         </div>
         <div className={styles.footer}>
-      <span>
-            <Image
-              width={112}
-              height={20}
-              src="https://packagequality.com/shield/react-next-table"
-              alt="Quality"
-            />
-          </span> 
           <span>
             <Image
               width={140}
               height={20}
-              src="https://img.shields.io/bundlephobia/minzip/react-next-table" 
-              alt="Bundle Size"
-            />
-          </span>
-          <span>
-            <Image
-              width={140}
-              height={20}
-              src="https://img.shields.io/npm/dm/react-next-table"
+              src="https://img.shields.io/npm/dy/react-next-table"
               alt="Downloads"
+              blurDataURL="https://img.shields.io/npm/dy/react-next-table"
+              placeholder="blur"
             />
           </span>
-
           <span>
             <Image
               width={54}
               height={20}
               src="https://img.shields.io/github/stars/a-simplecode/react-next-table"
               alt="Github Stars"
+              blurDataURL="https://img.shields.io/github/stars/a-simplecode/react-next-table"
+              placeholder="blur"
+            />
+          </span>
+          <span>
+            <Image
+              width={140}
+              height={20}
+              src="https://img.shields.io/bundlephobia/minzip/react-next-table"
+              alt="Bundle Size"
+              blurDataURL="https://img.shields.io/bundlephobia/minzip/react-next-table"
+              placeholder="blur"
+            />
+          </span>
+          <span>
+            <Image
+              width={112}
+              height={20}
+              src="https://packagequality.com/shield/react-next-table"
+              alt="Quality"
+              blurDataURL="https://packagequality.com/shield/react-next-table"
+              placeholder="blur"
             />
           </span>
 
@@ -79,6 +86,8 @@ export default function Packages() {
               height={20}
               src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?label=latest"
               alt="Github Stable Release"
+              blurDataURL="https://img.shields.io/github/v/release/a-simplecode/react-next-table?label=latest"
+              placeholder="blur"
             />
           </span>
 
@@ -88,6 +97,8 @@ export default function Packages() {
               height={20}
               src="https://img.shields.io/github/v/release/a-simplecode/react-next-table?include_prereleases&label=prerelease&sort=semver"
               alt="Github Prelease"
+              blurDataURL="https://img.shields.io/github/v/release/a-simplecode/react-next-table?include_prereleases&label=prerelease&sort=semver"
+              placeholder="blur"
             />
           </span>
         </div>

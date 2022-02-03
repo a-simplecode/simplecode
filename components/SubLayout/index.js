@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import styles from "./SubLayout.module.css";
+import Image from 'next/image';
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import styles from './SubLayout.module.css';
 
 export default function SubLayout(props) {
   return (
@@ -12,6 +12,8 @@ export default function SubLayout(props) {
           src="/images/background-image.jpeg"
           width={469}
           height={200}
+          blurDataURL="/images/background-image.jpeg"
+          placeholder="blur"
         />
 
         <main className={styles.main}>
@@ -23,6 +25,8 @@ export default function SubLayout(props) {
                 src="/images/AMINE AMINE - BRIGHT LAB.jpg"
                 width={800}
                 height={800}
+                blurDataURL="/images/AMINE AMINE - BRIGHT LAB.jpg"
+                placeholder="blur"
               />
             </Parallax>
           </div>
