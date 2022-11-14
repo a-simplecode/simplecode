@@ -7,6 +7,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
+      
       <Html lang='en' dir='ltr'>
         <Head>
         <meta name='application-name' content={APP_NAME} />
